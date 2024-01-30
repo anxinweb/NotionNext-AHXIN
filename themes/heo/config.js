@@ -20,7 +20,7 @@ const CONFIG = {
   HEO_HERO_TITLE_3: 'AHXIN.CN',
   HEO_HERO_TITLE_4: '我是ah新呀',
   HEO_HERO_TITLE_5: '生活纯粹即喜乐',
-  HEO_HERO_TITLE_LINK: 'https://ahxin.cn/',
+  HEO_HERO_TITLE_LINK: 'https://ahxin.cn',
 
   // 英雄区显示三个置顶分类
   HEO_HERO_CATEGORY_1: { title: '必看精选', url: '/tag/必看精选' },
@@ -42,7 +42,7 @@ const CONFIG = {
     '🤖️ 数码科技爱好者',
     '🧱 团队小组发动机'
   ],
-  HEO_INFO_CARD_URL: '', // 个人资料底部按钮链接
+  HEO_INFO_CARD_URL: '#', // 个人资料底部按钮链接
 
   // 用户技能图标
   HEO_GROUP_ICONS: [
