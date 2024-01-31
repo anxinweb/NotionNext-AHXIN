@@ -28,7 +28,7 @@ export default function PostHeader({ post, siteInfo }) {
                 }
             `}</style>
 
-            <div style={{ backdropFilter: 'blur(15px)' }} className={'bg-[##0060e0] absolute top-0 w-full h-full py-10 flex justify-center items-center'}>
+            <div style={{ backdropFilter: 'blur(15px)' }} className={'bg-[#0060e0] absolute top-0 w-full h-full py-10 flex justify-center items-center'}>
 
                 {/* 文章背景图 */}
                 <div id='post-cover-wrapper' style={{ filter: 'blur(15px)' }} className='coverdiv lg:translate-x-96 opacity-50 lg:rotate-12'>
