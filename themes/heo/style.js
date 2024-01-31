@@ -14,7 +14,7 @@ const Style = () => {
 
       // 公告栏中的字体固定白色
       #theme-heo #announcement-content .notion {
-        color: white;
+        color: black;
       }
 
       ::-webkit-scrollbar-thumb {
