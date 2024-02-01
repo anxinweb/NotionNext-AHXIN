@@ -21,12 +21,12 @@ import { useRouter } from 'next/router'
 import ArticleDetail from './components/ArticleDetail'
 import Link from 'next/link'
 import BlogListBar from './components/BlogListBar'
-import { Transition } from '@headlessui/react'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
-import CommonHead from '@/components/CommonHead'
 import { siteConfig } from '@/lib/config'
 import AlgoliaSearchModal from '@/components/AlgoliaSearchModal'
+import Announcement from './components/Announcement'
+import Card from './components/Card'
 
 // 主题全局状态
 const ThemeGlobalNext = createContext()
@@ -38,8 +38,7 @@ export const useNextGlobal = () => useContext(ThemeGlobalNext)
  * @constructor
  */
 const LayoutBase = (props) => {
-  const { children, headerSlot, rightAreaSlot, meta, post } = props
-  const { onLoading } = useGlobal()
+  const { children, headerSlot, rightAreaSlot, post } = props
   const targetRef = useRef(null)
   const floatButtonGroup = useRef(null)
   const [showRightFloat, switchShow] = useState(false)
@@ -87,8 +86,6 @@ const LayoutBase = (props) => {
   return (
     <ThemeGlobalNext.Provider value={{ searchModal }}>
         <div id='theme-next'>
-            {/* SEO相关 */}
-            <CommonHead meta={meta}/>
             <Style/>
 
             {/* 移动端顶部导航栏 */}
@@ -108,19 +105,7 @@ const LayoutBase = (props) => {
 
                 {/* 中央内容 */}
                 <section id='container-inner' className={`${siteConfig('NEXT_NAV_TYPE', null, CONFIG) !== 'normal' ? 'mt-24' : ''} lg:max-w-3xl xl:max-w-4xl flex-grow md:mt-0 min-h-screen w-full relative z-10`} ref={targetRef}>
-                    <Transition
-                        show={!onLoading}
-                        appear={true}
-                        enter="transition ease-in-out duration-700 transform order-first"
-                        enterFrom="opacity-0 translate-y-16"
-                        enterTo="opacity-100"
-                        leave="transition ease-in-out duration-300 transform"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0 -translate-y-16"
-                        unmount={false}
-                    >
-                        {children}
-                    </Transition>
+                    {children}
                 </section>
 
                 {/* 右侧栏样式 */}
@@ -157,7 +142,20 @@ const LayoutBase = (props) => {
  * @returns
  */
 const LayoutIndex = (props) => {
-  return <LayoutPostList {...props} />
+  const { notice } = props
+  return <>
+        {/* 首页移动端顶部显示公告 */}
+        <Card className='my-2 lg:hidden'>
+            <Announcement post={notice} />
+        </Card>
+
+        <BlogListBar {...props} />
+
+        {siteConfig('POST_LIST_STYLE') !== 'page'
+          ? <BlogPostListScroll {...props} showSummary={true} />
+          : <BlogPostListPage {...props} />
+        }
+    </>
 }
 
 /**

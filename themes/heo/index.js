@@ -7,7 +7,6 @@
  */
 
 import CONFIG from './config'
-import CommonHead from '@/components/CommonHead'
 import { useEffect, useState } from 'react'
 import Footer from './components/Footer'
 import SideRight from './components/SideRight'
@@ -51,8 +50,7 @@ const LayoutBase = props => {
   const {
     children,
     slotTop,
-    className,
-    meta
+    className
   } = props
 
   // 全屏模式下的最大宽度
@@ -62,9 +60,8 @@ const LayoutBase = props => {
   const headerSlot = (
     <header>
       {/* 顶部导航 */}
-      <div id="nav-bar-wrapper" className="h-16">
-        <NavBar {...props} />
-      </div>
+      <NavBar {...props} />
+
       {/* 通知横幅 */}
       {router.route === '/'
         ? <>
@@ -91,8 +88,7 @@ const LayoutBase = props => {
       id="theme-heo"
       className="bg-[#f7f9fe] dark:bg-[#18171d] h-full min-h-screen flex flex-col"
     >
-      {/* SEO信息 */}
-      <CommonHead meta={meta} />
+
       <Style />
 
       {/* 顶部嵌入 导航栏，首页放hero，文章页放文章详情 */}

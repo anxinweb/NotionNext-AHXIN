@@ -24,7 +24,6 @@ import NotionPage from '@/components/NotionPage'
 import { ArticleLock } from './components/ArticleLock'
 import { Transition } from '@headlessui/react'
 import { Style } from './style'
-import CommonHead from '@/components/CommonHead'
 import BlogPostListAll from './components/BlogPostListAll'
 import BlogPostCard from './components/BlogPostCard'
 import Link from 'next/link'
@@ -32,6 +31,8 @@ import dynamic from 'next/dynamic'
 import { MenuItem } from './components/MenuItem'
 import LogoBar from './components/LogoBar'
 import { siteConfig } from '@/lib/config'
+import Live2D from '@/components/Live2D'
+import BlogArchiveItem from './components/BlogArchiveItem'
 
 const WWAds = dynamic(() => import('@/components/WWAds'), { ssr: false })
 
@@ -46,7 +47,7 @@ export const useNavGlobal = () => useContext(ThemeGlobalNav)
  * @constructor
  */
 const LayoutBase = (props) => {
-  const { customMenu, children, post, allNavPages, categoryOptions, slotLeft, slotTop, meta } = props
+  const { customMenu, children, post, allNavPages, categoryOptions, slotLeft, slotTop } = props
   const { onLoading } = useGlobal()
   const [tocVisible, changeTocVisible] = useState(false)
   const [pageNavVisible, changePageNavVisible] = useState(false)
@@ -69,8 +70,6 @@ const LayoutBase = (props) => {
 
   return (
         <ThemeGlobalNav.Provider value={{ tocVisible, changeTocVisible, filteredNavPages, setFilteredNavPages, allNavPages, pageNavVisible, changePageNavVisible, categoryOptions }}>
-            {/* HEAD */}
-            <CommonHead meta={meta}/>
             {/* 样式 */}
             <Style/>
 
@@ -104,6 +103,7 @@ const LayoutBase = (props) => {
 
                         {/* 页脚站点信息 */}
                         <div className='w-56 fixed left-0 bottom-0 z-0'>
+                            <Live2D />
                             <Footer {...props} />
                         </div>
                     </div>
@@ -270,7 +270,14 @@ const LayoutSearch = (props) => {
  * @returns
  */
 const LayoutArchive = (props) => {
-  return <></>
+  const { archivePosts } = props
+  return (<>
+            <div className="mb-10 pb-20 md:py-12 p-3  min-h-screen w-full">
+                {Object.keys(archivePosts).map(archiveTitle => (
+                    <BlogArchiveItem key={archiveTitle} archiveTitle={archiveTitle} archivePosts={archivePosts} />
+                ))}
+            </div>
+        </>)
 }
 
 /**
