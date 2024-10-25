@@ -8,7 +8,7 @@ const CONFIG = {
   EXAMPLE_MENU_ARCHIVE: true, // 显示归档
   EXAMPLE_MENU_SEARCH: true, // 显示搜索
 
-  EXAMPLE_POST_LIST_COVER: true, // 列表显示文章封面
+  EXAMPLE_POST_LIST_COVER: false, // 列表显示文章封面
 
   EXAMPLE_TITLE_IMAGE: false, // 标题栏，是否背景图片
 
