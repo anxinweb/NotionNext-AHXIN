@@ -124,7 +124,7 @@ const CONFIG = {
 
   // *****  以下配置无效，只是预留开发 ****
   // 菜单配置
-  HEO_MENU_INDEX: true, // 显示首页
+  HEO_MENU_INDEX: false, // 显示首页
   HEO_MENU_CATEGORY: true, // 显示分类
   HEO_MENU_TAG: true, // 显示标签
   HEO_MENU_ARCHIVE: true, // 显示归档
